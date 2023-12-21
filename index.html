@@ -145,86 +145,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Event%20loop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zirao Cheng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zirao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/21/Event%20loop/" class="post-title-link" itemprop="url">Event loop</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:31:55" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="In-p33-The-Event-Loop-in-practice"><a href="#In-p33-The-Event-Loop-in-practice" class="headerlink" title="(In p33. The Event Loop in practice)"></a>(In p33. The Event Loop in practice)</h2><h2 id="Q-Isn’t-setTimeout-setImmediate-has-callback"><a href="#Q-Isn’t-setTimeout-setImmediate-has-callback" class="headerlink" title="Q: Isn’t setTimeout(),setImmediate() has callback ?"></a>Q: Isn’t setTimeout(),setImmediate() has callback ?</h2><p>Hi Jonas,</p>
-<p>you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event loop should come in picture. do clarify.</p>
-<h2 id="A-Here’s-the-summarize"><a href="#A-Here’s-the-summarize" class="headerlink" title="A: Here’s the summarize"></a>A: Here’s the summarize</h2><p>Only callback functions code INSIDE the poll phase code block(i.e. I&#x2F;O loop phase), they will have execution order.</p>
-<p>Else, they are still in event loop, but No execution order</p>
-<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png" alt="img"></p>
-<h1 id="Here’s-the-details"><a href="#Here’s-the-details" class="headerlink" title="Here’s the details"></a>Here’s the details</h1><p>The explanation in the video is <strong>really</strong> confusing and actually I was disappointed in discovering no ‘official’ answer has never been given, even though the question seemed to be shared among many users from many months (I guess years now).</p>
-<p>I went through the documentation on my own and this page finally answered me:</p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></p>
-<p>Here the key points to note. I will use italic to citations from the official docs linked page:</p>
-<p>- Callbacks from setTimeout and setImmediate in the top-level code from the video DO ARE executed in the event loop. They are not top-level code. There is simply a caveat to understand why they are scheduled randomly, possibly breaking the event loop phases order. Keep reading for understanding why ;)</p>
-<p><em>-A timer specifies the threshold after which a provided callback may be executed rather than the exact time a person wants it to be executed. Timers callbacks will run as early as they can be scheduled after the specified amount of time has passed; however, Operating System scheduling or the running of other callbacks may delay them.</em> -&gt; this means there is no way to know when timer callbacks will be scheduled in the timer queue. We only know after when they will be scheduled.</p>
-<p><em>- Technically, the</em> <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll"><em>poll phase</em></a> <em>controls when timers are executed.</em> -&gt; this is a first hint that says: <strong>without a scheduled I&#x2F;O loop phase, there is no control on callback execution order.</strong></p>
-<p>- The poll phase is well explained <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll">here</a> -&gt; Technically speaking, this phase is the <strong>heart of the event-loop</strong> since it both monitors the presence of expired timers (i.e. timer callbacks scheduled in the callback queue) and of callbacks in the <strong>check</strong> phase (setImmediate callbacks). <strong>It orchestrates the entire tick event loop.</strong></p>
-<p>- If there are setImmediate callbacks, the (emptied) poll phase stops and executes immediate callbacks, otherwise it moves on to timers</p>
-<p>- The poll phase is not therefore only executing callbacks, it also polls new callbacks and <strong>idles whenever there are no pending callbacks in other phases</strong></p>
-<p><em>-Generally, as the code is executed, the event loop will eventually hit the poll phase where it will wait for an incoming connection, request, etc. However, if a callback has been scheduled with setImmediate() and the poll phase becomes idle, it will end and continue to the check phase rather than waiting for poll events</em></p>
-<p>We can summarise the entire behaviour by saying that the presence of a valid so called I&#x2F;O cycle (i.e a valid phase of I&#x2F;O polling with at least one valid callback to execute) is paramount in setting up an order of execution for callbacks in all event loop phases. <strong>It is an entry point for callbacks execution order.</strong> This leads to two consequences:</p>
-<p>\1) setImmediate callbacks actually <strong>precede</strong> timer callbacks, since they come immediately after the I&#x2F;O cycle, which synchronises all callbacks. Using a setImmediate callback ensures it will be executed <strong>as soon as possible</strong> (here the immediate attribute starts to make sense).</p>
-<p>\2) <strong>Without a synchronisation I&#x2F;O phase, there is no actual starting point for callbacks synchronization</strong>. The order of arrival of timeout&#x2F; immediate callbacks strictly depends on the process behaviour. This justifies what Jonas said in the video. setTimeout and setImmediate are indeed called one after another in the top level context, <strong>without setting up any I&#x2F;O callback</strong>. Later on in the code, these instructions are then repeated in the file read callback, where therefore an I&#x2F;O phase is fired. Since then, callbacks entry points are stated, and their execution order (first the setImmediate, BEFORE timers, then the timers) becomes deterministic.</p>
-<p>A similar example as the one provided in this video is given here, from the linked page (screenshot for quick reference):</p>
-<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png" alt="img"></p>
-<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930113001220.png" alt="image-20230930113001220"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Dependencies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,6 +263,86 @@
 <p><a target="_blank" rel="noopener" href="https://hackmd.io/@Heidi-Liu/note-hexo-github">https://hackmd.io/@Heidi-Liu/note-hexo-github</a></p>
 <p>手把手教你使用Hexo+GitHub搭建个人博客并发布文章（附常见问题解决方法）</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/655349835">https://zhuanlan.zhihu.com/p/655349835</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Event%20loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zirao Cheng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zirao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/21/Event%20loop/" class="post-title-link" itemprop="url">Event loop</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:31:55" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="In-p33-The-Event-Loop-in-practice"><a href="#In-p33-The-Event-Loop-in-practice" class="headerlink" title="(In p33. The Event Loop in practice)"></a>(In p33. The Event Loop in practice)</h2><h2 id="Q-Isn’t-setTimeout-setImmediate-has-callback"><a href="#Q-Isn’t-setTimeout-setImmediate-has-callback" class="headerlink" title="Q: Isn’t setTimeout(),setImmediate() has callback ?"></a>Q: Isn’t setTimeout(),setImmediate() has callback ?</h2><p>Hi Jonas,</p>
+<p>you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event loop should come in picture. do clarify.</p>
+<h2 id="A-Here’s-the-summarize"><a href="#A-Here’s-the-summarize" class="headerlink" title="A: Here’s the summarize"></a>A: Here’s the summarize</h2><p>Only callback functions code INSIDE the poll phase code block(i.e. I&#x2F;O loop phase), they will have execution order.</p>
+<p>Else, they are still in event loop, but No execution order</p>
+<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png" alt="img"></p>
+<h1 id="Here’s-the-details"><a href="#Here’s-the-details" class="headerlink" title="Here’s the details"></a>Here’s the details</h1><p>The explanation in the video is <strong>really</strong> confusing and actually I was disappointed in discovering no ‘official’ answer has never been given, even though the question seemed to be shared among many users from many months (I guess years now).</p>
+<p>I went through the documentation on my own and this page finally answered me:</p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></p>
+<p>Here the key points to note. I will use italic to citations from the official docs linked page:</p>
+<p>- Callbacks from setTimeout and setImmediate in the top-level code from the video DO ARE executed in the event loop. They are not top-level code. There is simply a caveat to understand why they are scheduled randomly, possibly breaking the event loop phases order. Keep reading for understanding why ;)</p>
+<p><em>-A timer specifies the threshold after which a provided callback may be executed rather than the exact time a person wants it to be executed. Timers callbacks will run as early as they can be scheduled after the specified amount of time has passed; however, Operating System scheduling or the running of other callbacks may delay them.</em> -&gt; this means there is no way to know when timer callbacks will be scheduled in the timer queue. We only know after when they will be scheduled.</p>
+<p><em>- Technically, the</em> <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll"><em>poll phase</em></a> <em>controls when timers are executed.</em> -&gt; this is a first hint that says: <strong>without a scheduled I&#x2F;O loop phase, there is no control on callback execution order.</strong></p>
+<p>- The poll phase is well explained <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll">here</a> -&gt; Technically speaking, this phase is the <strong>heart of the event-loop</strong> since it both monitors the presence of expired timers (i.e. timer callbacks scheduled in the callback queue) and of callbacks in the <strong>check</strong> phase (setImmediate callbacks). <strong>It orchestrates the entire tick event loop.</strong></p>
+<p>- If there are setImmediate callbacks, the (emptied) poll phase stops and executes immediate callbacks, otherwise it moves on to timers</p>
+<p>- The poll phase is not therefore only executing callbacks, it also polls new callbacks and <strong>idles whenever there are no pending callbacks in other phases</strong></p>
+<p><em>-Generally, as the code is executed, the event loop will eventually hit the poll phase where it will wait for an incoming connection, request, etc. However, if a callback has been scheduled with setImmediate() and the poll phase becomes idle, it will end and continue to the check phase rather than waiting for poll events</em></p>
+<p>We can summarise the entire behaviour by saying that the presence of a valid so called I&#x2F;O cycle (i.e a valid phase of I&#x2F;O polling with at least one valid callback to execute) is paramount in setting up an order of execution for callbacks in all event loop phases. <strong>It is an entry point for callbacks execution order.</strong> This leads to two consequences:</p>
+<p>\1) setImmediate callbacks actually <strong>precede</strong> timer callbacks, since they come immediately after the I&#x2F;O cycle, which synchronises all callbacks. Using a setImmediate callback ensures it will be executed <strong>as soon as possible</strong> (here the immediate attribute starts to make sense).</p>
+<p>\2) <strong>Without a synchronisation I&#x2F;O phase, there is no actual starting point for callbacks synchronization</strong>. The order of arrival of timeout&#x2F; immediate callbacks strictly depends on the process behaviour. This justifies what Jonas said in the video. setTimeout and setImmediate are indeed called one after another in the top level context, <strong>without setting up any I&#x2F;O callback</strong>. Later on in the code, these instructions are then repeated in the file read callback, where therefore an I&#x2F;O phase is fired. Since then, callbacks entry points are stated, and their execution order (first the setImmediate, BEFORE timers, then the timers) becomes deterministic.</p>
+<p>A similar example as the one provided in this video is given here, from the linked page (screenshot for quick reference):</p>
+<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png" alt="img"></p>
+<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930113001220.png" alt="image-20230930113001220"></p>
 
       
     </div>
