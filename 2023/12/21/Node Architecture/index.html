@@ -4,15 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2023 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Node Architecture1. Core dependencies: Google V8 engine: convert JS code into machine code libuv: gives node access to underlying computer operating system, file system, networking, etc. gives node tw">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://chengzirao/chengzirao.github.io/archives/2023/index.html">
+<meta property="og:url" content="https://chengzirao/chengzirao.github.io/2023/12/21/Node%20Architecture/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Node Architecture1. Core dependencies: Google V8 engine: convert JS code into machine code libuv: gives node access to underlying computer operating system, file system, networking, etc. gives node tw">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png">
+<meta property="article:published_time" content="2023-12-21T04:18:02.106Z">
+<meta property="article:modified_time" content="2023-12-21T04:21:23.193Z">
 <meta property="article:author" content="Zirao Cheng">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png">
   
     <link rel="alternate" href="/chengzirao.github.io/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,123 +73,62 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/chengzirao.github.io/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/Promise%20solution%20to%20the%20Callback%20Hell/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T04:24:16.594Z" itemprop="datePublished">Dec 21</time>
+        <section id="main"><article id="post-Node Architecture" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/chengzirao.github.io/2023/12/21/Node%20Architecture/" class="article-date">
+  <time class="dt-published" datetime="2023-12-21T04:18:02.106Z" itemprop="datePublished">2023-12-21</time>
 </a>
-      
-    </header>
+    
   </div>
-</article>
-  
+  <div class="article-inner">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/Streams/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T04:18:02.110Z" itemprop="datePublished">Dec 21</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/Node%20Architecture/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T04:18:02.106Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/Event%20loop/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T04:18:02.104Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/Dependencies/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T04:12:04.521Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/How-To-Use-HEXO/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T02:12:30.000Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/chengzirao.github.io/2023/12/21/How-To-Use-HEXO/">How To Use hexo.js</a>
-    </h1>
-  
+        <h1 id="Node-Architecture"><a href="#Node-Architecture" class="headerlink" title="Node Architecture"></a>Node Architecture</h1><h3 id="1-Core-dependencies"><a href="#1-Core-dependencies" class="headerlink" title="1. Core dependencies:"></a>1. Core dependencies:</h3><ol>
+<li>Google V8 engine: convert JS code into machine code</li>
+<li>libuv:<ol>
+<li>gives node access to underlying computer operating system, file system, networking, etc.</li>
+<li>gives node two features: Event loop &amp; thread pool</li>
+</ol>
+</li>
+</ol>
+<p>Btw, V8 and libuv are written by C++, so which allows us to write pure JS code running in Node.js, but still access funtions like file reading, which actually implemented in libuv or other libraries in C++</p>
+<h3 id="2-Other-dependencies"><a href="#2-Other-dependencies" class="headerlink" title="2. Other dependencies:"></a>2. Other dependencies:</h3><p>http-parser, c-ares, OpenSSL, zlib</p>
+<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png" alt="image-20230930091210811"></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/chengzirao.github.io/2023/12/21/hello-world/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-12-21T02:05:01.528Z" itemprop="datePublished">Dec 21</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/chengzirao.github.io/2023/12/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chengzirao/chengzirao.github.io/2023/12/21/Node%20Architecture/" data-id="clqep8qud0002msq39cdhbgk3" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/chengzirao.github.io/2023/12/21/Streams/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/chengzirao.github.io/2023/12/21/Event%20loop/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
