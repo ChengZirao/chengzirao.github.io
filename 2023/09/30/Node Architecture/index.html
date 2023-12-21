@@ -23,18 +23,16 @@
   <meta name="description" content="1. Core dependencies: Google V8 engine: convert JS code into machine code libuv: gives node access to underlying computer operating system, file system, networking, etc. gives node two features: Event">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node Architecture">
-<meta property="og:url" content="https://chengzirao.github.io/2023/12/21/Node%20Architecture/index.html">
+<meta property="og:url" content="https://chengzirao.github.io/2023/09/30/Node%20Architecture/index.html">
 <meta property="og:site_name" content="Zirao&#39;s Blog">
 <meta property="og:description" content="1. Core dependencies: Google V8 engine: convert JS code into machine code libuv: gives node access to underlying computer operating system, file system, networking, etc. gives node two features: Event">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png">
-<meta property="article:published_time" content="2023-12-21T02:12:30.000Z">
-<meta property="article:modified_time" content="2023-12-21T04:34:37.102Z">
+<meta property="article:published_time" content="2023-09-30T01:12:30.000Z">
+<meta property="article:modified_time" content="2023-12-21T12:19:31.645Z">
 <meta property="article:author" content="Zirao Cheng">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png">
 
-<link rel="canonical" href="https://chengzirao.github.io/2023/12/21/Node%20Architecture/">
+<link rel="canonical" href="https://chengzirao.github.io/2023/09/30/Node%20Architecture/">
 
 
 <script id="page-configurations">
@@ -152,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Node%20Architecture/">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/09/30/Node%20Architecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:34:37" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
+              <time title="Created: 2023-09-30 09:12:30" itemprop="dateCreated datePublished" datetime="2023-09-30T09:12:30+08:00">2023-09-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-12-21 20:19:31" itemprop="dateModified" datetime="2023-12-21T20:19:31+08:00">2023-12-21</time>
+              </span>
 
           
 
@@ -200,7 +204,7 @@
 </ol>
 <p>Btw, V8 and libuv are written by C++, so which allows us to write pure JS code running in Node.js, but still access funtions like file reading, which actually implemented in libuv or other libraries in C++</p>
 <h3 id="2-Other-dependencies"><a href="#2-Other-dependencies" class="headerlink" title="2. Other dependencies:"></a>2. Other dependencies:</h3><p>http-parser, c-ares, OpenSSL, zlib</p>
-<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930091210811.png" alt="image-20230930091210811"></p>
+<p>![image-20230930091210811](D:\Udemy\Coding Blog\myBlog\blog_img\image-20230930091210811.png)</p>
 
     </div>
 
@@ -215,13 +219,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/12/21/How-To-Use-HEXO/" rel="prev" title="How To Use hexo.js">
-      <i class="fa fa-chevron-left"></i> How To Use hexo.js
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/12/21/Event%20loop/" rel="next" title="Event loop">
-      Event loop <i class="fa fa-chevron-right"></i>
+    <a href="/2023/12/21/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
