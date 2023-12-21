@@ -145,81 +145,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Dependencies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zirao Cheng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zirao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/21/Dependencies/" class="post-title-link" itemprop="url">Node.js Dependencies</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:31:36" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><h3 id="nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed"><a href="#nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed" class="headerlink" title="nodemon(dev dependency): use nodemon to restart the project automatically when code changed"></a>nodemon(dev dependency): use nodemon to restart the project automatically when code changed</h3><h4 id="There-are-two-ways-of-using-nodemon"><a href="#There-are-two-ways-of-using-nodemon" class="headerlink" title="There are two ways of using nodemon:"></a>There are two ways of using nodemon:</h4><ol>
-<li><p>Globally(<strong>Recommend for dev depencencies</strong>): use command line ‘nodemon .&#x2F;index.js’ instead of ‘node .&#x2F;index.js’</p>
-</li>
-<li><p>Locally: in package.json–&gt;”scripts”, create a new key:value, </p>
-<p>here I create “placeholder”: “nodemon .&#x2F;index.js”, </p>
-<p>then use command line <strong>‘npm run placeholder’ or  ‘npm placeholder’</strong> to start it</p>
-</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node-farm&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Learning node.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;placeholder&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon ./index.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zirao Cheng&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ISC&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;slugify&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.6.6&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nodemon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Where-it-stored"><a href="#Where-it-stored" class="headerlink" title="Where it stored?"></a>Where it stored?</h1><p>Local dependencies are stored right at the project, in a name of ‘node_modules’ folder, <strong>btw, never to upload the ‘node_modules’ folder to github or move it to another computer if you try to run your project on other computers, cuz the dependencies in the ‘node_modules’ folder can just simply download by npm!</strong></p>
-<h3 id="if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer"><a href="#if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer" class="headerlink" title="if you want to recover the ‘node_modules’ folder in a new computer:"></a>if you want to recover the ‘node_modules’ folder in a new computer:</h3><p>​	use command line <strong>‘npm install’</strong>, then npm will read the ‘package.json’ in the project, read all 	dependencies and download everything</p>
-<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230929163240996.png" alt="image-20230929163240996"></p>
-<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json:"></a>package-lock.json:</h3><p>​	Stores <em><strong>all the dependencies and all the version</strong></em> we’re actually using in the project</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Event%20loop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,6 +225,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Dependencies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zirao Cheng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zirao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/21/Dependencies/" class="post-title-link" itemprop="url">Node.js Dependencies</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:31:36" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><h3 id="nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed"><a href="#nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed" class="headerlink" title="nodemon(dev dependency): use nodemon to restart the project automatically when code changed"></a>nodemon(dev dependency): use nodemon to restart the project automatically when code changed</h3><h4 id="There-are-two-ways-of-using-nodemon"><a href="#There-are-two-ways-of-using-nodemon" class="headerlink" title="There are two ways of using nodemon:"></a>There are two ways of using nodemon:</h4><ol>
+<li><p>Globally(<strong>Recommend for dev depencencies</strong>): use command line ‘nodemon .&#x2F;index.js’ instead of ‘node .&#x2F;index.js’</p>
+</li>
+<li><p>Locally: in package.json–&gt;”scripts”, create a new key:value, </p>
+<p>here I create “placeholder”: “nodemon .&#x2F;index.js”, </p>
+<p>then use command line <strong>‘npm run placeholder’ or  ‘npm placeholder’</strong> to start it</p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node-farm&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Learning node.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;placeholder&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon ./index.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zirao Cheng&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ISC&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;slugify&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.6.6&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nodemon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Where-it-stored"><a href="#Where-it-stored" class="headerlink" title="Where it stored?"></a>Where it stored?</h1><p>Local dependencies are stored right at the project, in a name of ‘node_modules’ folder, <strong>btw, never to upload the ‘node_modules’ folder to github or move it to another computer if you try to run your project on other computers, cuz the dependencies in the ‘node_modules’ folder can just simply download by npm!</strong></p>
+<h3 id="if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer"><a href="#if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer" class="headerlink" title="if you want to recover the ‘node_modules’ folder in a new computer:"></a>if you want to recover the ‘node_modules’ folder in a new computer:</h3><p>​	use command line <strong>‘npm install’</strong>, then npm will read the ‘package.json’ in the project, read all 	dependencies and download everything</p>
+<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230929163240996.png" alt="image-20230929163240996"></p>
+<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json:"></a>package-lock.json:</h3><p>​	Stores <em><strong>all the dependencies and all the version</strong></em> we’re actually using in the project</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/How-To-Use-HEXO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -344,75 +344,6 @@
 <p>手把手教你使用Hexo+GitHub搭建个人博客并发布文章（附常见问题解决方法）</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/655349835">https://zhuanlan.zhihu.com/p/655349835</a></p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Streams/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zirao Cheng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zirao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/21/Streams/" class="post-title-link" itemprop="url">Streams</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:33:32" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Before talking about Streams, let’s first take File System module in Node.js as an example:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 1</span></span><br><span class="line">   fs.<span class="title function_">readFile</span>(<span class="string">&quot;test-file.txt&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">     res.<span class="title function_">end</span>(data);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>traditional method like <strong>fs.readFile()</strong>, will load the entire file to the ‘data’ variable stored into memory, and only after the loading operation finished, it can then send that data. So when the file is big, or tons of requests hit the server, the Node process will quickly run out of resources and quit working, which is really a huge problem.</p>
-<h3 id="Based-on-the-problems-above-here-comes-the-‘Stream’"><a href="#Based-on-the-problems-above-here-comes-the-‘Stream’" class="headerlink" title="Based on the problems above, here comes the ‘Stream’:"></a>Based on the problems above, here comes the ‘Stream’:</h3><p>‘Stream’ is a way to <strong>transmit the data piece by piece(chunk by chunk)</strong>, so we don’t need to load the entire file data into memory, take the code below as an example:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 2: Streams</span></span><br><span class="line">   <span class="keyword">const</span> readable = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;test-file.txt&quot;</span>);</span><br><span class="line">  <span class="comment">/* When a new piece of data is consumed, emit &#x27;data&#x27; event, </span></span><br><span class="line"><span class="comment">  and can access to that piece of data in the param &#x27;chunk&#x27; in the callback function*/</span></span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">// Write the piece of data into &#x27;response&#x27;, &#x27;response&#x27; is a Writable Stream</span></span><br><span class="line">     res.<span class="title function_">write</span>(chunk);</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/* When all the data is read(consumed), emit &#x27;end&#x27; event */</span></span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">// Print the data onto the client(i.e. browser)</span></span><br><span class="line">     res.<span class="title function_">end</span>();</span><br><span class="line">   &#125;);</span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;error&quot;</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">     res.<span class="property">statusCode</span> = <span class="number">500</span>;</span><br><span class="line">     res.<span class="title function_">end</span>(<span class="string">&quot;File not found!&quot;</span>);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>In the code above, we create a variable called ‘readable’, which is a <strong>‘Readable Stream’</strong> object, the ‘Readable Stream’ object contains two events ‘data’ and ‘end’, which is IMPORTANT to achieve Stream.</p>
-<p>First, cut the file content into pieces of data, when a new piece of data is consumed, emit ‘data’ event, which triggers the ‘readable.on()’, and send one piece of data to the param in the param ‘chunk’ in the callback function, then use the ‘res’ variable, which is a <strong>‘Writable Stream’</strong> object, to write that ‘chunk’ into response</p>
-<p>Then, when all the data is read(consumed), emit ‘end’ event, triggers ‘res.end()’, print the data onto the client(i.e. browser)</p>
-<h4 id="But-there-are-still-problems-unsolved"><a href="#But-there-are-still-problems-unsolved" class="headerlink" title="But, there are still problems unsolved:"></a>But, there are still problems unsolved:</h4><p>The speed of reading file data to ‘readable’ variable is way faster than write the data to ‘res’ variable, the speed is unmatch.</p>
-<h3 id="To-solve-this-problem-here-comes-solution-3-Pipe"><a href="#To-solve-this-problem-here-comes-solution-3-Pipe" class="headerlink" title="To solve this problem, here comes solution 3: Pipe"></a>To solve this problem, here comes solution 3: Pipe</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 3</span></span><br><span class="line">  <span class="keyword">const</span> readable = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;test-file.txt&quot;</span>);</span><br><span class="line">  <span class="comment">// readableStreamSource.pipe(writeableStreamDestination)</span></span><br><span class="line">  readable.<span class="title function_">pipe</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8000</span>, <span class="string">&quot;127.0.0.1&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Listening...&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -548,6 +479,75 @@
 
 <p>‘Pending Promise’, when it successfully gets the data, the ‘Pending Promise’ turns to a ‘Resolved Promise’</p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Streams/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zirao Cheng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zirao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/21/Streams/" class="post-title-link" itemprop="url">Streams</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:33:32" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Before talking about Streams, let’s first take File System module in Node.js as an example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 1</span></span><br><span class="line">   fs.<span class="title function_">readFile</span>(<span class="string">&quot;test-file.txt&quot;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (err) <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">     res.<span class="title function_">end</span>(data);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>traditional method like <strong>fs.readFile()</strong>, will load the entire file to the ‘data’ variable stored into memory, and only after the loading operation finished, it can then send that data. So when the file is big, or tons of requests hit the server, the Node process will quickly run out of resources and quit working, which is really a huge problem.</p>
+<h3 id="Based-on-the-problems-above-here-comes-the-‘Stream’"><a href="#Based-on-the-problems-above-here-comes-the-‘Stream’" class="headerlink" title="Based on the problems above, here comes the ‘Stream’:"></a>Based on the problems above, here comes the ‘Stream’:</h3><p>‘Stream’ is a way to <strong>transmit the data piece by piece(chunk by chunk)</strong>, so we don’t need to load the entire file data into memory, take the code below as an example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 2: Streams</span></span><br><span class="line">   <span class="keyword">const</span> readable = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;test-file.txt&quot;</span>);</span><br><span class="line">  <span class="comment">/* When a new piece of data is consumed, emit &#x27;data&#x27; event, </span></span><br><span class="line"><span class="comment">  and can access to that piece of data in the param &#x27;chunk&#x27; in the callback function*/</span></span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">// Write the piece of data into &#x27;response&#x27;, &#x27;response&#x27; is a Writable Stream</span></span><br><span class="line">     res.<span class="title function_">write</span>(chunk);</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/* When all the data is read(consumed), emit &#x27;end&#x27; event */</span></span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">// Print the data onto the client(i.e. browser)</span></span><br><span class="line">     res.<span class="title function_">end</span>();</span><br><span class="line">   &#125;);</span><br><span class="line">   readable.<span class="title function_">on</span>(<span class="string">&quot;error&quot;</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">     res.<span class="property">statusCode</span> = <span class="number">500</span>;</span><br><span class="line">     res.<span class="title function_">end</span>(<span class="string">&quot;File not found!&quot;</span>);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>In the code above, we create a variable called ‘readable’, which is a <strong>‘Readable Stream’</strong> object, the ‘Readable Stream’ object contains two events ‘data’ and ‘end’, which is IMPORTANT to achieve Stream.</p>
+<p>First, cut the file content into pieces of data, when a new piece of data is consumed, emit ‘data’ event, which triggers the ‘readable.on()’, and send one piece of data to the param in the param ‘chunk’ in the callback function, then use the ‘res’ variable, which is a <strong>‘Writable Stream’</strong> object, to write that ‘chunk’ into response</p>
+<p>Then, when all the data is read(consumed), emit ‘end’ event, triggers ‘res.end()’, print the data onto the client(i.e. browser)</p>
+<h4 id="But-there-are-still-problems-unsolved"><a href="#But-there-are-still-problems-unsolved" class="headerlink" title="But, there are still problems unsolved:"></a>But, there are still problems unsolved:</h4><p>The speed of reading file data to ‘readable’ variable is way faster than write the data to ‘res’ variable, the speed is unmatch.</p>
+<h3 id="To-solve-this-problem-here-comes-solution-3-Pipe"><a href="#To-solve-this-problem-here-comes-solution-3-Pipe" class="headerlink" title="To solve this problem, here comes solution 3: Pipe"></a>To solve this problem, here comes solution 3: Pipe</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>).<span class="title function_">createServer</span>();</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Solution 3</span></span><br><span class="line">  <span class="keyword">const</span> readable = fs.<span class="title function_">createReadStream</span>(<span class="string">&quot;test-file.txt&quot;</span>);</span><br><span class="line">  <span class="comment">// readableStreamSource.pipe(writeableStreamDestination)</span></span><br><span class="line">  readable.<span class="title function_">pipe</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8000</span>, <span class="string">&quot;127.0.0.1&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Listening...&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
 
