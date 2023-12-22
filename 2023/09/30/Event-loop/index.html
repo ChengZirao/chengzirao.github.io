@@ -20,19 +20,23 @@
     var CONFIG = {"hostname":"chengzirao.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="(In p33. The Event Loop in practice)Q: Isn’t setTimeout(),setImmediate() has callback ?Hi Jonas, you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://chengzirao.github.io/2023/12/21/hello-world/index.html">
+<meta property="og:title" content="Event loop">
+<meta property="og:url" content="https://chengzirao.github.io/2023/09/30/Event-loop/index.html">
 <meta property="og:site_name" content="Zirao&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="(In p33. The Event Loop in practice)Q: Isn’t setTimeout(),setImmediate() has callback ?Hi Jonas, you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event l">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-21T02:05:01.528Z">
-<meta property="article:modified_time" content="2023-11-26T12:14:23.000Z">
+<meta property="og:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png">
+<meta property="og:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png">
+<meta property="og:image" content="https://github.com/ChengZirao/my-blog-deployment/blob/master/blog_img/image-20230930113001220.png?raw=true">
+<meta property="article:published_time" content="2023-09-30T03:39:30.000Z">
+<meta property="article:modified_time" content="2023-12-22T02:52:26.434Z">
 <meta property="article:author" content="Zirao Cheng">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png">
 
-<link rel="canonical" href="https://chengzirao.github.io/2023/12/21/hello-world/">
+<link rel="canonical" href="https://chengzirao.github.io/2023/09/30/Event-loop/">
 
 
 <script id="page-configurations">
@@ -45,7 +49,7 @@
   };
 </script>
 
-  <title>Hello World | Zirao's Blog</title>
+  <title>Event loop | Zirao's Blog</title>
   
 
 
@@ -150,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/09/30/Event-loop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +167,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Event loop
         </h1>
 
         <div class="post-meta">
@@ -173,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-12-21 10:05:01" itemprop="dateCreated datePublished" datetime="2023-12-21T10:05:01+08:00">2023-12-21</time>
+              <time title="Created: 2023-09-30 11:39:30" itemprop="dateCreated datePublished" datetime="2023-09-30T11:39:30+08:00">2023-09-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-11-26 20:14:23" itemprop="dateModified" datetime="2023-11-26T20:14:23+08:00">2023-11-26</time>
+                <time title="Modified: 2023-12-22 10:52:26" itemprop="dateModified" datetime="2023-12-22T10:52:26+08:00">2023-12-22</time>
               </span>
 
           
@@ -194,19 +198,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="In-p33-The-Event-Loop-in-practice"><a href="#In-p33-The-Event-Loop-in-practice" class="headerlink" title="(In p33. The Event Loop in practice)"></a>(In p33. The Event Loop in practice)</h2><h2 id="Q-Isn’t-setTimeout-setImmediate-has-callback"><a href="#Q-Isn’t-setTimeout-setImmediate-has-callback" class="headerlink" title="Q: Isn’t setTimeout(),setImmediate() has callback ?"></a>Q: Isn’t setTimeout(),setImmediate() has callback ?</h2><p>Hi Jonas,</p>
+<p>you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event loop should come in picture. do clarify.</p>
+<h2 id="A-Here’s-the-summarize"><a href="#A-Here’s-the-summarize" class="headerlink" title="A: Here’s the summarize"></a>A: Here’s the summarize</h2><p>Only callback functions code INSIDE the poll phase code block(i.e. I&#x2F;O loop phase), they will have execution order.</p>
+<p>Else, they are still in event loop, but No execution order</p>
+<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png" alt="img"></p>
+<h1 id="Here’s-the-details"><a href="#Here’s-the-details" class="headerlink" title="Here’s the details"></a>Here’s the details</h1><p>The explanation in the video is <strong>really</strong> confusing and actually I was disappointed in discovering no ‘official’ answer has never been given, even though the question seemed to be shared among many users from many months (I guess years now).</p>
+<p>I went through the documentation on my own and this page finally answered me:</p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></p>
+<p>Here the key points to note. I will use italic to citations from the official docs linked page:</p>
+<p>- Callbacks from setTimeout and setImmediate in the top-level code from the video DO ARE executed in the event loop. They are not top-level code. There is simply a caveat to understand why they are scheduled randomly, possibly breaking the event loop phases order. Keep reading for understanding why ;)</p>
+<p><em>-A timer specifies the threshold after which a provided callback may be executed rather than the exact time a person wants it to be executed. Timers callbacks will run as early as they can be scheduled after the specified amount of time has passed; however, Operating System scheduling or the running of other callbacks may delay them.</em> -&gt; this means there is no way to know when timer callbacks will be scheduled in the timer queue. We only know after when they will be scheduled.</p>
+<p><em>- Technically, the</em> <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll"><em>poll phase</em></a> <em>controls when timers are executed.</em> -&gt; this is a first hint that says: <strong>without a scheduled I&#x2F;O loop phase, there is no control on callback execution order.</strong></p>
+<p>- The poll phase is well explained <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll">here</a> -&gt; Technically speaking, this phase is the <strong>heart of the event-loop</strong> since it both monitors the presence of expired timers (i.e. timer callbacks scheduled in the callback queue) and of callbacks in the <strong>check</strong> phase (setImmediate callbacks). <strong>It orchestrates the entire tick event loop.</strong></p>
+<p>- If there are setImmediate callbacks, the (emptied) poll phase stops and executes immediate callbacks, otherwise it moves on to timers</p>
+<p>- The poll phase is not therefore only executing callbacks, it also polls new callbacks and <strong>idles whenever there are no pending callbacks in other phases</strong></p>
+<p><em>-Generally, as the code is executed, the event loop will eventually hit the poll phase where it will wait for an incoming connection, request, etc. However, if a callback has been scheduled with setImmediate() and the poll phase becomes idle, it will end and continue to the check phase rather than waiting for poll events</em></p>
+<p>We can summarise the entire behaviour by saying that the presence of a valid so called I&#x2F;O cycle (i.e a valid phase of I&#x2F;O polling with at least one valid callback to execute) is paramount in setting up an order of execution for callbacks in all event loop phases. <strong>It is an entry point for callbacks execution order.</strong> This leads to two consequences:</p>
+<p>\1) setImmediate callbacks actually <strong>precede</strong> timer callbacks, since they come immediately after the I&#x2F;O cycle, which synchronises all callbacks. Using a setImmediate callback ensures it will be executed <strong>as soon as possible</strong> (here the immediate attribute starts to make sense).</p>
+<p>\2) <strong>Without a synchronisation I&#x2F;O phase, there is no actual starting point for callbacks synchronization</strong>. The order of arrival of timeout&#x2F; immediate callbacks strictly depends on the process behaviour. This justifies what Jonas said in the video. setTimeout and setImmediate are indeed called one after another in the top level context, <strong>without setting up any I&#x2F;O callback</strong>. Later on in the code, these instructions are then repeated in the file read callback, where therefore an I&#x2F;O phase is fired. Since then, callbacks entry points are stated, and their execution order (first the setImmediate, BEFORE timers, then the timers) becomes deterministic.</p>
+<p>A similar example as the one provided in this video is given here, from the linked page (screenshot for quick reference):</p>
+<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png" alt="img"></p>
+<p><img src="https://github.com/ChengZirao/my-blog-deployment/blob/master/blog_img/image-20230930113001220.png?raw=true" alt="image-20230930113001220.png"></p>
 
     </div>
 
@@ -222,12 +235,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/10/23/Promise-Solution-to-The-Callback%20Hell/" rel="prev" title="Promise--Solution to The Callback Hell">
-      <i class="fa fa-chevron-left"></i> Promise--Solution to The Callback Hell
+    <a href="/2023/09/30/Node-Architecture/" rel="prev" title="Node Architecture">
+      <i class="fa fa-chevron-left"></i> Node Architecture
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/12/21/Streams/" rel="next" title="Streams">
-      Streams <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/23/Promise-Solution-to-The-Callback%20Hell/" rel="next" title="Promise--Solution to The Callback Hell">
+      Promise--Solution to The Callback Hell <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -287,7 +300,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#In-p33-The-Event-Loop-in-practice"><span class="nav-number">1.</span> <span class="nav-text">(In p33. The Event Loop in practice)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-Isn%E2%80%99t-setTimeout-setImmediate-has-callback"><span class="nav-number">2.</span> <span class="nav-text">Q: Isn’t setTimeout(),setImmediate() has callback ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Here%E2%80%99s-the-summarize"><span class="nav-number">3.</span> <span class="nav-text">A: Here’s the summarize</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Here%E2%80%99s-the-details"><span class="nav-number"></span> <span class="nav-text">Here’s the details</span></a></div>
       </div>
       <!--/noindex-->
 

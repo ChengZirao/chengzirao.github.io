@@ -20,23 +20,21 @@
     var CONFIG = {"hostname":"chengzirao.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="(In p33. The Event Loop in practice)Q: Isn’t setTimeout(),setImmediate() has callback ?Hi Jonas, you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event l">
+  <meta name="description" content="nodemon(dev dependency): use nodemon to restart the project automatically when code changedThere are two ways of using nodemon: Globally(Recommend for dev depencencies): use command line ‘nodemon .&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Event loop">
-<meta property="og:url" content="https://chengzirao.github.io/2023/12/21/Event%20loop/index.html">
+<meta property="og:title" content="Node.js Dependencies">
+<meta property="og:url" content="https://chengzirao.github.io/2023/09/25/Dependencies/index.html">
 <meta property="og:site_name" content="Zirao&#39;s Blog">
-<meta property="og:description" content="(In p33. The Event Loop in practice)Q: Isn’t setTimeout(),setImmediate() has callback ?Hi Jonas, you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event l">
+<meta property="og:description" content="nodemon(dev dependency): use nodemon to restart the project automatically when code changedThere are two ways of using nodemon: Globally(Recommend for dev depencencies): use command line ‘nodemon .&amp;#">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png">
-<meta property="og:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png">
-<meta property="og:image" content="c:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930113001220.png">
-<meta property="article:published_time" content="2023-12-21T02:12:30.000Z">
-<meta property="article:modified_time" content="2023-12-21T04:31:55.491Z">
+<meta property="og:image" content="https://github.com/ChengZirao/my-blog-deployment/blob/master/blog_img/image-20230929163240996.png?raw=true">
+<meta property="article:published_time" content="2023-09-25T02:12:30.000Z">
+<meta property="article:modified_time" content="2023-12-22T02:52:01.239Z">
 <meta property="article:author" content="Zirao Cheng">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png">
+<meta name="twitter:image" content="https://github.com/ChengZirao/my-blog-deployment/blob/master/blog_img/image-20230929163240996.png?raw=true">
 
-<link rel="canonical" href="https://chengzirao.github.io/2023/12/21/Event%20loop/">
+<link rel="canonical" href="https://chengzirao.github.io/2023/09/25/Dependencies/">
 
 
 <script id="page-configurations">
@@ -49,7 +47,7 @@
   };
 </script>
 
-  <title>Event loop | Zirao's Blog</title>
+  <title>Node.js Dependencies | Zirao's Blog</title>
   
 
 
@@ -154,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/12/21/Event%20loop/">
+    <link itemprop="mainEntityOfPage" href="https://chengzirao.github.io/2023/09/25/Dependencies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +165,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Event loop
+          Node.js Dependencies
         </h1>
 
         <div class="post-meta">
@@ -176,10 +174,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-12-21 10:12:30 / Modified: 12:31:55" itemprop="dateCreated datePublished" datetime="2023-12-21T10:12:30+08:00">2023-12-21</time>
+              <time title="Created: 2023-09-25 10:12:30" itemprop="dateCreated datePublished" datetime="2023-09-25T10:12:30+08:00">2023-09-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-12-22 10:52:01" itemprop="dateModified" datetime="2023-12-22T10:52:01+08:00">2023-12-22</time>
+              </span>
 
           
 
@@ -192,28 +196,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="In-p33-The-Event-Loop-in-practice"><a href="#In-p33-The-Event-Loop-in-practice" class="headerlink" title="(In p33. The Event Loop in practice)"></a>(In p33. The Event Loop in practice)</h2><h2 id="Q-Isn’t-setTimeout-setImmediate-has-callback"><a href="#Q-Isn’t-setTimeout-setImmediate-has-callback" class="headerlink" title="Q: Isn’t setTimeout(),setImmediate() has callback ?"></a>Q: Isn’t setTimeout(),setImmediate() has callback ?</h2><p>Hi Jonas,</p>
-<p>you said at 5.30 that there’s nothing to do with event loop, but both have callback’s and hence event loop should come in picture. do clarify.</p>
-<h2 id="A-Here’s-the-summarize"><a href="#A-Here’s-the-summarize" class="headerlink" title="A: Here’s the summarize"></a>A: Here’s the summarize</h2><p>Only callback functions code INSIDE the poll phase code block(i.e. I&#x2F;O loop phase), they will have execution order.</p>
-<p>Else, they are still in event loop, but No execution order</p>
-<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2022-09-30_01-04-59-383d660944779bf346b4bea9acee0ced.png" alt="img"></p>
-<h1 id="Here’s-the-details"><a href="#Here’s-the-details" class="headerlink" title="Here’s the details"></a>Here’s the details</h1><p>The explanation in the video is <strong>really</strong> confusing and actually I was disappointed in discovering no ‘official’ answer has never been given, even though the question seemed to be shared among many users from many months (I guess years now).</p>
-<p>I went through the documentation on my own and this page finally answered me:</p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a></p>
-<p>Here the key points to note. I will use italic to citations from the official docs linked page:</p>
-<p>- Callbacks from setTimeout and setImmediate in the top-level code from the video DO ARE executed in the event loop. They are not top-level code. There is simply a caveat to understand why they are scheduled randomly, possibly breaking the event loop phases order. Keep reading for understanding why ;)</p>
-<p><em>-A timer specifies the threshold after which a provided callback may be executed rather than the exact time a person wants it to be executed. Timers callbacks will run as early as they can be scheduled after the specified amount of time has passed; however, Operating System scheduling or the running of other callbacks may delay them.</em> -&gt; this means there is no way to know when timer callbacks will be scheduled in the timer queue. We only know after when they will be scheduled.</p>
-<p><em>- Technically, the</em> <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll"><em>poll phase</em></a> <em>controls when timers are executed.</em> -&gt; this is a first hint that says: <strong>without a scheduled I&#x2F;O loop phase, there is no control on callback execution order.</strong></p>
-<p>- The poll phase is well explained <a target="_blank" rel="noopener" href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#poll">here</a> -&gt; Technically speaking, this phase is the <strong>heart of the event-loop</strong> since it both monitors the presence of expired timers (i.e. timer callbacks scheduled in the callback queue) and of callbacks in the <strong>check</strong> phase (setImmediate callbacks). <strong>It orchestrates the entire tick event loop.</strong></p>
-<p>- If there are setImmediate callbacks, the (emptied) poll phase stops and executes immediate callbacks, otherwise it moves on to timers</p>
-<p>- The poll phase is not therefore only executing callbacks, it also polls new callbacks and <strong>idles whenever there are no pending callbacks in other phases</strong></p>
-<p><em>-Generally, as the code is executed, the event loop will eventually hit the poll phase where it will wait for an incoming connection, request, etc. However, if a callback has been scheduled with setImmediate() and the poll phase becomes idle, it will end and continue to the check phase rather than waiting for poll events</em></p>
-<p>We can summarise the entire behaviour by saying that the presence of a valid so called I&#x2F;O cycle (i.e a valid phase of I&#x2F;O polling with at least one valid callback to execute) is paramount in setting up an order of execution for callbacks in all event loop phases. <strong>It is an entry point for callbacks execution order.</strong> This leads to two consequences:</p>
-<p>\1) setImmediate callbacks actually <strong>precede</strong> timer callbacks, since they come immediately after the I&#x2F;O cycle, which synchronises all callbacks. Using a setImmediate callback ensures it will be executed <strong>as soon as possible</strong> (here the immediate attribute starts to make sense).</p>
-<p>\2) <strong>Without a synchronisation I&#x2F;O phase, there is no actual starting point for callbacks synchronization</strong>. The order of arrival of timeout&#x2F; immediate callbacks strictly depends on the process behaviour. This justifies what Jonas said in the video. setTimeout and setImmediate are indeed called one after another in the top level context, <strong>without setting up any I&#x2F;O callback</strong>. Later on in the code, these instructions are then repeated in the file read callback, where therefore an I&#x2F;O phase is fired. Since then, callbacks entry points are stated, and their execution order (first the setImmediate, BEFORE timers, then the timers) becomes deterministic.</p>
-<p>A similar example as the one provided in this video is given here, from the linked page (screenshot for quick reference):</p>
-<p><img src="https://img-c.udemycdn.com/redactor/raw/q_and_a/2021-09-12_14-45-48-5b1eced2b7673bee0de781ee6edf592d.png" alt="img"></p>
-<p><img src="C:\Users\orang_9qy7n8e\AppData\Roaming\Typora\typora-user-images\image-20230930113001220.png" alt="image-20230930113001220"></p>
+        <ol>
+<li><h3 id="nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed"><a href="#nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed" class="headerlink" title="nodemon(dev dependency): use nodemon to restart the project automatically when code changed"></a>nodemon(dev dependency): use nodemon to restart the project automatically when code changed</h3><h4 id="There-are-two-ways-of-using-nodemon"><a href="#There-are-two-ways-of-using-nodemon" class="headerlink" title="There are two ways of using nodemon:"></a>There are two ways of using nodemon:</h4><ol>
+<li><p>Globally(<strong>Recommend for dev depencencies</strong>): use command line ‘nodemon .&#x2F;index.js’ instead of ‘node .&#x2F;index.js’</p>
+</li>
+<li><p>Locally: in package.json–&gt;”scripts”, create a new key:value, </p>
+<p>here I create “placeholder”: “nodemon .&#x2F;index.js”, </p>
+<p>then use command line <strong>‘npm run placeholder’ or  ‘npm placeholder’</strong> to start it</p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node-farm&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Learning node.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;placeholder&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon ./index.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Zirao Cheng&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ISC&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;slugify&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.6.6&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nodemon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Where-it-stored"><a href="#Where-it-stored" class="headerlink" title="Where it stored?"></a>Where it stored?</h1><p>Local dependencies are stored right at the project, in a name of ‘node_modules’ folder, <strong>btw, never to upload the ‘node_modules’ folder to github or move it to another computer if you try to run your project on other computers, cuz the dependencies in the ‘node_modules’ folder can just simply download by npm!</strong></p>
+<h3 id="if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer"><a href="#if-you-want-to-recover-the-‘node-modules’-folder-in-a-new-computer" class="headerlink" title="if you want to recover the ‘node_modules’ folder in a new computer:"></a>if you want to recover the ‘node_modules’ folder in a new computer:</h3><p>​	use command line <strong>‘npm install’</strong>, then npm will read the ‘package.json’ in the project, read all 	dependencies and download everything</p>
+<p><img src="https://github.com/ChengZirao/my-blog-deployment/blob/master/blog_img/image-20230929163240996.png?raw=true" alt="image-20230929163240996.png"></p>
+<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json:"></a>package-lock.json:</h3><p>​	Stores <em><strong>all the dependencies and all the version</strong></em> we’re actually using in the project</p>
 
     </div>
 
@@ -228,13 +227,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/12/21/How%20To%20Use%20HEXO/" rel="prev" title="How To Use hexo.js">
-      <i class="fa fa-chevron-left"></i> How To Use hexo.js
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/12/21/Dependencies/" rel="next" title="Node.js Dependencies">
-      Node.js Dependencies <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/30/Node-Architecture/" rel="next" title="Node Architecture">
+      Node Architecture <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -294,7 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#In-p33-The-Event-Loop-in-practice"><span class="nav-number">1.</span> <span class="nav-text">(In p33. The Event Loop in practice)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-Isn%E2%80%99t-setTimeout-setImmediate-has-callback"><span class="nav-number">2.</span> <span class="nav-text">Q: Isn’t setTimeout(),setImmediate() has callback ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Here%E2%80%99s-the-summarize"><span class="nav-number">3.</span> <span class="nav-text">A: Here’s the summarize</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Here%E2%80%99s-the-details"><span class="nav-number"></span> <span class="nav-text">Here’s the details</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nodemon-dev-dependency-use-nodemon-to-restart-the-project-automatically-when-code-changed"><span class="nav-number">1.</span> <span class="nav-text">nodemon(dev dependency): use nodemon to restart the project automatically when code changed</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#There-are-two-ways-of-using-nodemon"><span class="nav-number">1.1.</span> <span class="nav-text">There are two ways of using nodemon:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Where-it-stored"><span class="nav-number"></span> <span class="nav-text">Where it stored?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-you-want-to-recover-the-%E2%80%98node-modules%E2%80%99-folder-in-a-new-computer"><span class="nav-number">1.</span> <span class="nav-text">if you want to recover the ‘node_modules’ folder in a new computer:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-lock-json"><span class="nav-number">2.</span> <span class="nav-text">package-lock.json:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -308,7 +304,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
